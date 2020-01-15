@@ -1,0 +1,74 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Jual extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Jual_model');
+        // is_logged_in();
+    }
+
+    public function index()
+    {
+        $data['judul'] = 'Titip Jual';
+        $data['jual'] = $this->Jual_model->getAllJual();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['gender'] = $this->db->get('kategori_gender')->result_array();
+        $data['item'] = $this->db->get('kategori_item')->result_array();
+        {
+            $this->load->view('backend/templates/header', $data);
+            $this->load->view('backend/templates/sidebar', $data);
+            $this->load->view('backend/templates/topbar', $data);
+            $this->load->view('backend/jual/index', $data);
+            $this->load->view('backend/templates/footer');
+        }
+    }
+
+    public function editdata($id)
+    {
+        $data['judul'] = 'Jual';
+
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['jual'] = $this->db->get_where('jual', ['id_jual' => $id])->row_array();
+
+        $data['gender'] = $this->db->get('kategori_gender')->result_array();
+        $data['item'] = $this->db->get('kategori_item')->result_array();
+
+        $this->form_validation->set_rules('nama_barang', 'Nama', 'required');
+        $this->form_validation->set_rules('harga_barang', 'Harga', 'required');
+        $this->form_validation->set_rules('id_kategori_gender', 'Gender', 'required');
+        $this->form_validation->set_rules('id_kategori_item', 'Item', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('backend/templates/header', $data);
+            $this->load->view('backend/templates/sidebar', $data);
+            $this->load->view('backend/templates/topbar', $data);
+            $this->load->view('backend/jual/edit', $data);
+            $this->load->view('backend/templates/footer');
+        } else {
+            $data = [
+                'nama_barang' => $this->input->post('nama_barang'),
+                'harga_barang' => $this->input->post('harga_barang'),
+                'id_kategori_gender' => $this->input->post('id_kategori_gender'),
+                'id_kategori_item' => $this->input->post('id_kategori_item'),
+                'deskripsi' => $this->input->post('deskripsi')
+            ];
+            
+            $this->db->where('id_jual', $this->input->post('id_jual'));
+            $this->db->update('jual', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Produk Berhasil Diedit</div>');
+            redirect('jual');
+        }
+    }
+
+    public function deleteJual($id)
+    {
+        $this->db->delete('jual', ['id_jual' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Produk Berhasil Dihapus</div>');
+        redirect('jual');
+    }
+    
+}
