@@ -19,11 +19,12 @@
 						<h5>Product Category</h5>
 					</div>
 					<ul class="sidebar_categories">
-						<li><a href="#">Men</a></li>
-						<li><a href="#">Women</a></li>
-						<li><a href="#">Accessories</a></li>
+						<li><a href="#">Shirt</a></li>
+						<li><a href="#">T-shirt</a></li>
+						<li><a href="#">Jacket</a></li>
+						<li><a href="#">Pants</a></li>
 						<li><a href="#">Shoes</a></li>
-						<li><a href="#">Shop</a></li>
+						<li><a href="#">Accessories</a></li>
 					</ul>
 				</div>
 			</div>
@@ -60,26 +61,31 @@
 							<!-- Product Grid -->
 
 
+
+
 							<div class="product-grid">
-
-								<!-- Product 1 -->
-
-								<div class="product-item men">
-									<div class="product discount product_filter">
-										<div class="product_image">
-											<img src="<?= base_url(''); ?>assets/images/product_1.png" alt="">
+								<div class="row col-sm-12">
+									<!-- Product 1 -->
+									<?php foreach ($jual as $j) : ?>
+										<div class="product-item men">
+											<div class="product discount product_filter">
+												<div class="product_image">
+													<img src="<?= base_url('assets/images/jual/') . $j['image']; ?>">
+												</div>
+												<div class=" product_info">
+													<a href="<?= base_url('home/detail/') . $j['id_jual']; ?>">
+														<h6 class="product_name"><?= $j['nama_barang'] ?></h6>
+													</a>
+													<div class="product_price">Rp. <?= number_format($j['harga_barang'], 0, ',', '.'); ?></div>
+												</div>
+											</div>
+											<div class="red_button add_to_cart_button">
+												<a href="<?= base_url('cart/tambah/') . $j['id_jual']; ?>">add to cart</a>
+											</div>
 										</div>
-										<div class="product_info">
-											<h6 class="product_name"><a href="<?= base_url('home/detail'); ?>">Jaket Gildan Polos (Hitam)</a></h6>
-											<div class="product_price">Rp.150.000</div>
-										</div>
-									</div>
-									<div class="red_button add_to_cart_button"><a href="<?= base_url('home/cart'); ?>">add to cart</a></div>
+									<?php endforeach ?>
 								</div>
 							</div>
-
-							<!-- Product Sorting -->
-
 						</div>
 					</div>
 				</div>

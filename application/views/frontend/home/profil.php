@@ -57,38 +57,6 @@
                 </div>
                 </form>
 
-            </div>
-            <div class="col-sm-5">
-                <form action="#" method="post">
-                    <div class="row card">
-                        <div class="col-12 mb-3 pt-3">
-                            <h3>Your Address</h3>
-                            <hr>
-                            <label for="first_name">Name <span>*</span></label>
-                            <input type="text" class="form-control" id="first_name" value="" required>
-                        </div>
-
-                        <div class="col-12 mb-3">
-                            <label for="company">Address<span>*</span></label>
-                            <input type="text" class="form-control" id="company" value="">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="company">Province</label>
-                            <input type="text" class="form-control" id="company" value="">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="company">City</label>
-                            <input type="text" class="form-control" id="company" value="">
-                        </div>
-
-
-                        <div class="col-12 mb-3">
-                            <button id="submit" type="submit" class="btn btn-dark" value="Submit">Update</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
         </div>
 
     </div>

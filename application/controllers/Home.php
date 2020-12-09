@@ -2,11 +2,14 @@
 
 class Home extends CI_Controller
 {
+
     public function index()
     {
         $data['judul'] = 'Lowak';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+        $data['jual'] = $this->Jual_model->getAllJual();
+        $data['gender'] = $this->db->get('kategori_gender')->result_array();
+        $data['item'] = $this->db->get('kategori_item')->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('frontend/home/index');
         $this->load->view('templates/footer');
@@ -16,7 +19,8 @@ class Home extends CI_Controller
     {
         $data['judul'] = 'Lowak';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+        $data['gender'] = $this->db->get('kategori_gender')->result_array();
+        $data['item'] = $this->db->get('kategori_item')->result_array();
         $data['judul'] = 'Kontak';
         $this->load->view('templates/header_kontak', $data);
         $this->load->view('frontend/home/kontak');
@@ -26,6 +30,7 @@ class Home extends CI_Controller
     public function jual()
     {
         $data['judul'] = 'Titip Jual';
+        $data['jual'] = $this->Jual_model->getAllJual();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['gender'] = $this->db->get('kategori_gender')->result_array();
         $data['item'] = $this->db->get('kategori_item')->result_array();
@@ -40,33 +45,32 @@ class Home extends CI_Controller
         $this->form_validation->set_rules('id_kategori_gender', 'Kategori Gender', 'required');
         $this->form_validation->set_rules('id_kategori_item', 'Kategori Item', 'required');
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
-        
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('frontend/home/jual');
             $this->load->view('templates/footer');
-         } else{
+        } else {
             $data = [
-                'nama'=>$this->input->post('nama'),
-                'nama_pemilik_rek'=>$this->input->post('nama_pemilik_rek'),
-                'nama_bank'=>$this->input->post('nama_bank'),
-                'no_rek'=>$this->input->post('no_rek'),
-                'no_telepon'=>$this->input->post('no_telepon'),
-                'nama_barang'=>$this->input->post('nama_barang'),
-                'harga_barang'=>$this->input->post('harga_barang'),
-                'id_kategori_gender'=>$this->input->post('id_kategori_gender'),
-                'id_kategori_item'=>$this->input->post('id_kategori_item'),
-                'deskripsi'=>$this->input->post('deskripsi')
+                'nama' => $this->input->post('nama'),
+                'nama_pemilik_rek' => $this->input->post('nama_pemilik_rek'),
+                'nama_bank' => $this->input->post('nama_bank'),
+                'no_rek' => $this->input->post('no_rek'),
+                'no_telepon' => $this->input->post('no_telepon'),
+                'nama_barang' => $this->input->post('nama_barang'),
+                'harga_barang' => $this->input->post('harga_barang'),
+                'id_kategori_gender' => $this->input->post('id_kategori_gender'),
+                'id_kategori_item' => $this->input->post('id_kategori_item'),
+                'deskripsi' => $this->input->post('deskripsi'),
+                'status' => 'proses',
+                'author' => $data['user']['email']
             ];
             $upload_image = $_FILES['image']['name'];
             if ($upload_image) {
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size'] = '204000';
                 $config['upload_path'] = './assets/images/jual/';
-
                 $this->load->library('upload', $config);
-
                 if ($this->upload->do_upload('image')) {
 
                     $new_image = $this->upload->data('file_name');
@@ -75,6 +79,7 @@ class Home extends CI_Controller
                     echo $this->upload->display_errors();
                 }
             }
+
             $this->db->insert('jual', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Item Sended, Wait Confirmation !</div>');
@@ -85,20 +90,32 @@ class Home extends CI_Controller
     public function shop()
     {
         $data['judul'] = 'Lowak';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['judul'] = 'Shop';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['jual'] = $this->db->get_where('jual', ['status' => 'aktif'])->result_array();
+
+        $data['gender'] = $this->db->get('kategori_gender')->result_array();
+        $data['item'] = $this->db->get('kategori_item')->result_array();
+
+
         $this->load->view('templates/header', $data);
         $this->load->view('frontend/home/shop');
         $this->load->view('templates/footer');
     }
 
-    public function detail()
+    public function detail($id_jual)
     {
-        $data['judul'] = 'Lowak';
+        $data['judul'] = 'Detail Produk';
+
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['judul'] = 'Detail Produk';
+        $data['jual'] = $this->db->get_where('jual', ['status' => 'aktif'])->result_array();
+        $data['gender'] = $this->db->get('kategori_gender')->result_array();
+        $data['item'] = $this->db->get('kategori_item')->result_array();
+        $data['jual'] = $this->db->get_where('jual', ['id_jual' => $id_jual])->result_array();
+
         $this->load->view('templates/header_single', $data);
         $this->load->view('frontend/home/single');
         $this->load->view('templates/footer_single');
@@ -152,31 +169,36 @@ class Home extends CI_Controller
 
     public function dashboard()
     {
-        $data['judul'] = 'Profil';
+        $data['judul'] = 'Titip Jual';
+
+        $this->load->model('jual_model');
+        $this->load->model('Konfirmasi_model');
+
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->load->view('templates/header_kontak', $data);
-        $this->load->view('frontend/home/dashboard');
-        $this->load->view('templates/footer_kontak');
+        $data['checkout'] = $this->Konfirmasi_model->getAllKonfirmasi();
+        $data['jual'] = $this->jual_model->getAllJual();
+
+        $data['gender'] = $this->db->get('kategori_gender')->result_array();
+        $data['item'] = $this->db->get('kategori_item')->result_array(); {
+            $this->load->view('templates/header_kontak', $data);
+            $this->load->view('frontend/home/dashboard');
+            $this->load->view('templates/footer_kontak');
+        }
     }
 
-    public function cart()
+    public function detailpesanan($id_checkout)
     {
-        $data['judul'] = 'Cart';
+        $data['judul'] = 'Detail Pesanan';
+        $data['checkout'] = $this->Konfirmasi_model->tampil_data();
+
+        $data['konfirmasi'] = $this->Konfirmasi_model->ambil_id_konfirmasi($id_checkout);
+        $data['pesanan'] = $this->Konfirmasi_model->ambil_id_pesanan($id_checkout);
+
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header_kontak', $data);
-        $this->load->view('frontend/home/cart');
-        $this->load->view('templates/footer_kontak');
-    }
-
-    public function checkout()
-    {
-        $data['judul'] = 'Checkout';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $this->load->view('templates/header_kontak', $data);
-        $this->load->view('frontend/home/checkout');
+        $this->load->view('frontend/home/detailpesanan');
         $this->load->view('templates/footer_kontak');
     }
 }

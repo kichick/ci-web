@@ -24,7 +24,7 @@
 
                         <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="id_jual" id="id_jual" value="<?= $jual['id_jual'] ?>">
-                            
+
                             <div class=" form-group row">
                                 <label for="email" class="col-sm-2 col-form-label">Nama Barang</label>
                                 <div class="col-sm-10">
@@ -41,7 +41,7 @@
                             <div class="form-group row">
                                 <label for="email" class="col-sm-2 col-form-label">Kategori</label>
                                 <div class="form-grup col-sm-5">
-                                    <select name="id_kategori_gender" id="id_kategori_gender" class="form-control" >
+                                    <select name="id_kategori_gender" id="id_kategori_gender" class="form-control">
                                         <option value="">Category Gender</option>
                                         <?php foreach ($gender as $g) : ?>
                                             <option value="<?= $g['id_kategori_gender']; ?>"><?= $g['nama_kategori_gender']; ?></option>
@@ -65,7 +65,17 @@
                                     <input type="text" class="form-control" id="deskripsi" name="deskripsi" value="<?= $jual['deskripsi'] ?>">
                                 </div>
                             </div>
-                          
+
+                            <div class="form-group">
+                                <label for="status" class="col-sm-2 col-form-label">Aktif</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="status" name="status">
+                                        <option value="aktif">aktif</option>
+                                        <option value="proses">proses</option>
+                                    </select>
+                                </div>
+                            </div>
+
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-2"></div>

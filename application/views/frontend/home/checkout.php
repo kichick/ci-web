@@ -19,118 +19,139 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-5 mb-md-0">
-                            <h2 class="h3 mb-3 text-black">Billing Details</h2>
-                            <div class="p-3 p-lg-5 border">
+                    <form action="<?= base_url('checkout/proses') ?>" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6 mb-5 mb-md-0">
+                                <h2 class="h3 mb-3 text-black">Billing Details</h2>
+                                <div class="p-3 p-lg-5 border">
 
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <label for="name" class="text-black"> Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="name" name="name">
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label for="name" class="text-black"> Name <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="name_buy" name="name_buy">
+                                        </div>
+
                                     </div>
 
-                                </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label for="province" class="text-black">Province <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="province" name="province" placeholder="Street address">
+                                        </div>
+                                    </div>
 
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <label for="province" class="text-black">Province <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="province" name="province" placeholder="Street address">
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label for="address" class="text-black">Address <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="address" name="address" placeholder="Street address">
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <label for="address" class="text-black">Address <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="address" name="address" placeholder="Street address">
+                                    <div class="form-group row">
+                                        <div class="col-md-6">
+                                            <label for="regency" class="text-black">Regency <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="regency" name="regency">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="disctrict" class="text-black">Sub-disctrict <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="disctrict" name="disctrict">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label for="regency" class="text-black">Regency <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="regency" name="regency">
+                                    <div class="form-group row">
+                                        <div class="col-md-6">
+                                            <label for="village" class="text-black">Village <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="village" name="village">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="zip" class="text-black">Zip / Code <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="zip" name="zip">
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="disctrict" class="text-black">Sub-disctrict <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="disctrict" name="disctrict">
+                                    <div class="form-group row mb-5">
+                                        <div class="col-md-6">
+                                            <label for="email" class="text-black">Email Address <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="email" name="email">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="text-black">Phone <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label for="village" class="text-black">Village <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="village" name="village">
+                                    <div class="form-group">
+                                        <label for="notes" class="text-black">Order Notes</label>
+                                        <textarea name="notes" id="notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="zip" class="text-black">Zip / Code <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="zip" name="zip">
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-5">
-                                    <div class="col-md-6">
-                                        <label for="email" class="text-black">Email Address <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="email" name="email">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="notes" class="text-black">Order Notes</label>
-                                    <textarea name="notes" id="notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row mb-5">
-                                <div class="col-md-12">
-                                    <h2 class="h3 mb-3 text-black">Your Order</h2>
-                                    <div class="p-3 p-lg-5 border">
-                                        <table class="table site-block-order-table mb-5">
-                                            <thead>
-                                                <th>Product</th>
-                                                <th>Total</th>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-                                                    <td>$250.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Polo Shirt <strong class="mx-2">x</strong> 1</td>
-                                                    <td>$100.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                                                    <td class="text-black">$350.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                                                    <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                            <div class="col-md-6">
+                                <div class="row mb-5">
+                                    <div class="col-md-12">
+                                        <h2 class="h3 mb-3 text-black">Your Order</h2>
+                                        <div class="p-3 p-lg-5 border">
+                                            <table class="table site-block-order-table mb-5">
+                                                <thead>
+                                                    <th>Product</th>
+                                                    <th>Total</th>
+                                                </thead>
 
-                                        <div class="border p-3 mb-3">
-                                            <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Direct Bank Transfer</a></h3>
+                                                <tbody>
+                                                    <?php $i = 1; ?>
+                                                    <?php foreach ($this->cart->contents() as $items) : ?>
+                                                        <tr>
+                                                            <td><?= $items['name'] ?><strong class="mx-2">x</strong> <?= $items['qty'] ?></td>
+                                                            <td>Rp.<?= number_format($items['price'], 0, ',', '.') ?></td>
+                                                        </tr>
+                                                        <?php $i++ ?>
+                                                    <?php endforeach; ?>
 
-                                            <div class="collapse" id="collapsebank">
-                                                <div class="py-2">
-                                                    <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+
+                                                    <tr>
+                                                        <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+                                                        <td class="text-black">Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                            <div class="border p-3 mb-3">
+                                                <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Pilih Bank Transfer dan Pengiriman</a></h3>
+                                                <br>
+                                                <div class="collapse" id="collapsebank">
+                                                    <div class="py-2">
+                                                        <div class="form-group">
+                                                            <label>Pilih Bank</label>
+                                                            <select>
+                                                                <option>BRI - 1234567890234</option>
+                                                                <option>BNI - 12345678</option>
+                                                                <option>BRI - 1234567890</option>
+
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Pilih pengiriman</label>
+                                                            <select>
+                                                                <option>JNE</option>
+                                                                <option>J & T</option>
+                                                                <option>POS</option>
+                                                                <option>TIKI</option>
+                                                            </select>
+                                                        </div>
+                                                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <button class="btn btn-dark btn-lg btn-block" onclick="window.location='thankyou.html'">Place Order</button>
-                                        </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-dark btn-lg btn-block">Place Order</button>
+                                            </div>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
-                    </div>
-                    <!-- </form> -->
+                        <!-- </form> -->
+                    </form>
+
                 </div>
             </div>
 

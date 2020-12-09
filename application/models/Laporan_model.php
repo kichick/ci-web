@@ -10,12 +10,12 @@ class Laporan_model extends CI_Model
                          `checkout`.`address`,`checkout`.`regency`, 
                          `checkout`.`disctrict`,`checkout`.`village`,
                          `checkout`.`zip`, `checkout`.`email`,`checkout`.`phone`,
-                         `checkout`.`notes`, `checkout`.`image_out`,`checkout`.`total_harga`,
-                         `checkout`.`payment_status`, `product`.`id_produk`,`product`.`name`,
-                         `product`.`harga`,`product`.`image_produk` 
+                         `checkout`.`notes`, `checkout`.`image_out`,
+                         `checkout`.`payment_status`, `jual`.`id_jual`,`jual`.`nama_barang`,
+                          `jual`.`harga_barang`,`jual`.`qty`,`jual`.`image` 
                   FROM `checkout` 
-                  JOIN `product` 
-                  ON `product`.`id_produk` = `checkout`.`id_checkout`
+                  JOIN `jual` 
+                  ON `jual`.`id_jual` = `checkout`.`id_checkout`
                   ";
         return $this->db->query($query)->result_array();
     }

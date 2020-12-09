@@ -18,7 +18,6 @@
                     <?= $this->session->flashdata('message'); ?>
                 </div>
 
-                <a href="" class="btn btn-primary mb-5 " data-toggle="modal" data-target="#exampleModal">Add New Menu </a>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -35,7 +34,7 @@
                                 <th scope="row"><?= $i; ?></th>
                                 <td><?= $m['menu']; ?></td>
                                 <td>
-                                    
+
                                     <a href="" class="btn btn-round btn-danger btn-xs">delete</a>
                                 </td>
                             </tr>

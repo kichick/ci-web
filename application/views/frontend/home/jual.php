@@ -11,36 +11,36 @@
             <div class="row">
                 <div class="col-sm-5 mx-5">
                     <form action="<?= base_url('home/jual') ?>" method="POST" enctype="multipart/form-data">
-                        
-                            <div class="row card">
-                                <div class="col-12 mb-3 pt-3">
-                                    <h3>Your Information</h3>
-                                    <hr>
-                                    <label for="first_name">Full Name <span>*</span></label>
-                                    <input type="text" class="form-control" id="nama" name="nama" value="">
-                                </div>
 
-                                <div class="form-row col-12 mb-3">
-                                    <div class="col">
-                                        <label for="account_name">Account Bank Name<span>*</span></label>
-                                        <input type="text" class="form-control" id="nama_pemilik_rek" name="nama_pemilik_rek">
-                                    </div>
-                                    <div class="col">
-                                        <label for="bank_name">Bank Name<span>*</span></label>
-                                        <input type="text" class="form-control" id="nama_bank" name="nama_bank">
-                                    </div>
-                                </div>
+                        <div class="row card">
+                            <div class="col-12 mb-3 pt-3">
+                                <h3>Your Information</h3>
+                                <hr>
+                                <label for="first_name">Full Name <span>*</span></label>
+                                <input type="text" class="form-control" id="nama" name="nama" value="">
+                            </div>
 
-                                <div class="col-12 mb-3">
-                                    <label for="rek_number">Rekening Number</label>
-                                    <input type="text" class="form-control" id="no_rek" name="no_rek" value="">
+                            <div class="form-row col-12 mb-3">
+                                <div class="col">
+                                    <label for="account_name">Account Bank Name<span>*</span></label>
+                                    <input type="text" class="form-control" id="nama_pemilik_rek" name="nama_pemilik_rek">
                                 </div>
-
-                                <div class="col-12 mb-5">
-                                    <label for="new_password2">Phone Number</label>
-                                    <input type="text" class="form-control" id="no_telepon" name="no_telepon" value="">
+                                <div class="col">
+                                    <label for="bank_name">Bank Name<span>*</span></label>
+                                    <input type="text" class="form-control" id="nama_bank" name="nama_bank">
                                 </div>
                             </div>
+
+                            <div class="col-12 mb-3">
+                                <label for="rek_number">Rekening Number</label>
+                                <input type="text" class="form-control" id="no_rek" name="no_rek" value="">
+                            </div>
+
+                            <div class="col-12 mb-5">
+                                <label for="new_password2">Phone Number</label>
+                                <input type="text" class="form-control" id="no_telepon" name="no_telepon" value="">
+                            </div>
+                        </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="row card">
@@ -84,7 +84,7 @@
                             <button id="submit" type="submit" class="btn btn-dark">Send</button>
                         </div>
                     </div>
-                         
+
                     </form>
                 </div>
             </div>

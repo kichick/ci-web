@@ -20,7 +20,6 @@
                     <?= $this->session->flashdata('message'); ?>
                 </div>
 
-                <a href="" class="btn btn-primary mb-5 " data-toggle="modal" data-target="#exampleModal">Add New Submenu </a>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -46,7 +45,6 @@
                                 <td><?= $sm['is_active']; ?></td>
 
                                 <td>
-                                    <a href="" class="btn btn-round btn-success btn-xs">edit</a>
                                     <a href="<?= base_url('admin/deleteSubmenu/') . $sm['id']; ?>" onclick="return confirm('yakin data mau dihapus?');" class="btn btn-round btn-danger btn-xs">delete</a>
                                 </td>
                             </tr>

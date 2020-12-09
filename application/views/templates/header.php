@@ -46,7 +46,7 @@
 
                                             <ul class="account_selection">
                                                 <li><a href="<?= base_url('home/profil'); ?>">Profile</a></li>
-                                                <li><a href="<?= base_url('home/dashboard'); ?>">Dashboard</a></li>
+                                                <li><a href="<?= base_url('home/dashboard/'); ?>">Dashboard</a></li>
                                                 <li><a href="<?= base_url('auth/logout'); ?>">Logout</a></li>
                                             </ul>
                                         </li>
@@ -76,7 +76,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 text-right">
-                            <div class="logo_container">
+                            <div class="logo_container ml-auto">
                                 <a href="<?= base_url('home') ?>">LOWAK<span>Shop</span></a>
                             </div>
                             <nav class="navbar">
@@ -90,11 +90,12 @@
                                     <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                                     <li><a href="<?= base_url('auth') ?>"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                     <li class="checkout">
-                                        <a href="<?= base_url('home/cart') ?>">
+                                        <a href="<?= base_url('cart') ?>">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                            <span id="checkout_items" class="checkout_items">2</span>
+                                            <span id="checkout_items" class="checkout_items"><?= $this->cart->total_items(); ?></span>
                                         </a>
                                     </li>
+
                                 </ul>
                                 <div class="hamburger_container">
                                     <i class="fa fa-bars" aria-hidden="true"></i>

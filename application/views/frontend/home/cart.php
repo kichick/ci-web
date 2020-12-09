@@ -21,22 +21,30 @@
                                             <th scope="col">Image</th>
                                             <th scope="col">Product</th>
                                             <th scope="col">Price</th>
+                                            <th scope="col">Qty</th>
                                             <th scope="col">Total</th>
+
                                             <th scope="col">Remove</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <img src="<?= base_url(''); ?>assets/images/product_1.png" alt="Image" class="img-fluid">
-                                            </td>
-                                            <td>
-                                                <h2 class="h5 text-black">Top Up T-Shirt</h2>
-                                            </td>
-                                            <td>$49.00</td>
-                                            <td>$49.00</td>
-                                            <td><a href="#" class="btn btn-dark height-auto btn-sm">X</a></td>
-                                        </tr>
+                                        <?php $i = 1; ?>
+                                        <?php foreach ($this->cart->contents() as $items) : ?>
+                                            <tr>
+                                                <td>
+                                                    <img width="100px" src="<?= base_url(''); ?>assets/images/jual/<?= $items['image']; ?>" alt="Image" class="img-fluid">
+                                                </td>
+                                                <td>
+                                                    <h2 class="h5 text-black"><?= $items['name'] ?></h2>
+                                                </td>
+                                                <td>Rp.<?= number_format($items['price'], 0, ',', '.') ?></td>
+                                                <td><?= $items['qty'] ?></td>
+                                                <td>Rp.<?= number_format($items['subtotal'], 0, ',', '.') ?></td>
+                                                <td><a href="<?= base_url('cart/hapus') ?>" class="btn btn-dark height-auto btn-sm">X</a></td>
+                                            </tr>
+                                            <?php $i++ ?>
+                                        <?php endforeach; ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -46,7 +54,7 @@
                         <div class="col-md-6">
                             <div class="row mb-5">
                                 <div class="col-md-6">
-                                    <button class="btn btn-outline-dark btn-sm btn-block" onclick="window.location='<?=base_url('home/shop');?>'">Continue Shopping</button>
+                                    <button class="btn btn-outline-dark btn-sm btn-block" onclick="window.location='<?= base_url('home/shop'); ?>'">Continue Shopping</button>
                                 </div>
                             </div>
 
@@ -59,26 +67,19 @@
                                             <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <span class="text-black">Subtotal</span>
-                                        </div>
-                                        <div class="col-md-6 text-right">
-                                            <strong class="text-black">$230.00</strong>
-                                        </div>
-                                    </div>
+
                                     <div class="row mb-5">
                                         <div class="col-md-6">
                                             <span class="text-black">Total</span>
                                         </div>
                                         <div class="col-md-6 text-right">
-                                            <strong class="text-black">$230.00</strong>
+                                            <strong class="text-black">Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?></strong>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button class="btn btn-dark btn-lg btn-block" onclick="window.location='<?=base_url('home/checkout')?>'">Proceed To Checkout</button>
+                                            <button class="btn btn-dark btn-lg btn-block" onclick="window.location='<?= base_url('checkout') ?>'">Proceed To Checkout</button>
                                         </div>
                                     </div>
                                 </div>
